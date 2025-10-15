@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>dl_lab1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>ustinov_dl_lab1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7766,9 +7766,18 @@ $$L = -\frac{1}{K}\sum_{m=1}^{K}\sum_{i=1}^{10}y_i^{(m)}\ln{u_i^{(m)}},$$
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Requirement already satisfied: idx2numpy in /usr/local/lib/python3.12/dist-packages (1.2.3)
+<pre>Collecting idx2numpy
+  Downloading idx2numpy-1.2.3.tar.gz (6.8 kB)
+  Preparing metadata (setup.py) ... done
 Requirement already satisfied: numpy in /usr/local/lib/python3.12/dist-packages (from idx2numpy) (2.0.2)
 Requirement already satisfied: six in /usr/local/lib/python3.12/dist-packages (from idx2numpy) (1.17.0)
+Building wheels for collected packages: idx2numpy
+  Building wheel for idx2numpy (setup.py) ... done
+  Created wheel for idx2numpy: filename=idx2numpy-1.2.3-py3-none-any.whl size=7903 sha256=7c441539ee55947a673b2b152004a0707d3882cbe79828d05c23f4c0320f8afc
+  Stored in directory: /root/.cache/pip/wheels/f7/48/00/ae031c97d62f39e1c3c4daa00426c09a65eb29ae5753a189ee
+Successfully built idx2numpy
+Installing collected packages: idx2numpy
+Successfully installed idx2numpy-1.2.3
 </pre>
 </div>
 </div>
@@ -8221,13 +8230,13 @@ Path to MNIST dataset: /kaggle/input/mnist-dataset
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">tqdm</span>
 
-<span class="k">def</span> <span class="nf">trainNetwork</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">epoch_count</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">trainNetwork</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epoch_count</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">x_train_copy</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">y_train_copy</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">train_size</span> <span class="o">=</span> <span class="n">x_train_copy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -8255,16 +8264,18 @@ Path to MNIST dataset: /kaggle/input/mnist-dataset
 
         <span class="n">time_end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
-        <span class="c1"># run network on test dataset and compute loss and accuracy</span>
-        <span class="n">y_test_p</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
-        <span class="n">y_test_predict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_test_p</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y_test_p</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test_predict</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
+        <span class="c1"># run network on entire train dataset and compute loss and accuracy</span>
+        <span class="n">y_train_p</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+        <span class="n">y_train_predict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_train_p</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y_train_p</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_train_predict</span> <span class="o">==</span> <span class="n">y_train</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'time: </span><span class="si">{</span><span class="n">time_end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">time_start</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'train loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'train accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
 </pre></div>
 </div>
 </div>
@@ -8275,10 +8286,10 @@ Path to MNIST dataset: /kaggle/input/mnist-dataset
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">trained_network</span> <span class="o">=</span> <span class="n">trainNetwork</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">trained_network</span> <span class="o">=</span> <span class="n">trainNetwork</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8291,7 +8302,7 @@ Path to MNIST dataset: /kaggle/input/mnist-dataset
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:08&lt;00:00, 66.78it/s] 
+<pre>100%|██████████| 600/600 [00:05&lt;00:00, 100.80it/s]
 </pre>
 </div>
 </div>
@@ -8299,16 +8310,16 @@ Path to MNIST dataset: /kaggle/input/mnist-dataset
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 1
-time: 9.701858043670654
-loss: 0.24321887729962377
-accuracy: 0.9293
+time: 6.089871883392334
+train loss: 0.253195801037609
+train accuracy: 0.9296333333333333
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:06&lt;00:00, 86.96it/s] 
+<pre>100%|██████████| 600/600 [00:03&lt;00:00, 150.26it/s]
 </pre>
 </div>
 </div>
@@ -8316,16 +8327,16 @@ accuracy: 0.9293
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 2
-time: 7.096290826797485
-loss: 0.1868048374018034
-accuracy: 0.9458
+time: 4.1594321727752686
+train loss: 0.19018250363989206
+train accuracy: 0.9473833333333334
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:04&lt;00:00, 123.96it/s]
+<pre>100%|██████████| 600/600 [00:06&lt;00:00, 95.35it/s]
 </pre>
 </div>
 </div>
@@ -8333,16 +8344,16 @@ accuracy: 0.9458
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 3
-time: 5.024429082870483
-loss: 0.15528996480325646
-accuracy: 0.9541
+time: 6.459063529968262
+train loss: 0.1546340108908658
+train accuracy: 0.9579166666666666
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:06&lt;00:00, 89.71it/s] 
+<pre>100%|██████████| 600/600 [00:04&lt;00:00, 144.52it/s]
 </pre>
 </div>
 </div>
@@ -8350,16 +8361,16 @@ accuracy: 0.9541
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 4
-time: 6.850749492645264
-loss: 0.13311385733029757
-accuracy: 0.9604
+time: 4.303330898284912
+train loss: 0.1256162514237267
+train accuracy: 0.9652666666666667
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:04&lt;00:00, 139.69it/s]
+<pre>100%|██████████| 600/600 [00:03&lt;00:00, 152.10it/s]
 </pre>
 </div>
 </div>
@@ -8367,16 +8378,16 @@ accuracy: 0.9604
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 5
-time: 4.457403659820557
-loss: 0.11690714181985397
-accuracy: 0.9656
+time: 4.079756498336792
+train loss: 0.10903138902055874
+train accuracy: 0.9700333333333333
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:11&lt;00:00, 53.89it/s]
+<pre>100%|██████████| 600/600 [00:05&lt;00:00, 118.30it/s]
 </pre>
 </div>
 </div>
@@ -8384,16 +8395,16 @@ accuracy: 0.9656
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 6
-time: 11.308459758758545
-loss: 0.1050811030195769
-accuracy: 0.9668
+time: 5.246404409408569
+train loss: 0.09634259725036284
+train accuracy: 0.9740666666666666
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:06&lt;00:00, 96.63it/s] 
+<pre>100%|██████████| 600/600 [00:04&lt;00:00, 137.20it/s]
 </pre>
 </div>
 </div>
@@ -8401,16 +8412,16 @@ accuracy: 0.9668
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 7
-time: 6.654795408248901
-loss: 0.09897835983199625
-accuracy: 0.9708
+time: 4.511464595794678
+train loss: 0.08509803944451047
+train accuracy: 0.9771666666666666
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:05&lt;00:00, 116.63it/s]
+<pre>100%|██████████| 600/600 [00:06&lt;00:00, 93.77it/s] 
 </pre>
 </div>
 </div>
@@ -8418,16 +8429,16 @@ accuracy: 0.9708
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 8
-time: 5.563014984130859
-loss: 0.09097194895494592
-accuracy: 0.9736
+time: 6.5642290115356445
+train loss: 0.07831310318062952
+train accuracy: 0.97835
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:04&lt;00:00, 130.99it/s]
+<pre>100%|██████████| 600/600 [00:04&lt;00:00, 147.84it/s]
 </pre>
 </div>
 </div>
@@ -8435,16 +8446,16 @@ accuracy: 0.9736
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 9
-time: 5.268033027648926
-loss: 0.08775814801929892
-accuracy: 0.9737
+time: 4.222355842590332
+train loss: 0.06800034984035577
+train accuracy: 0.9818833333333333
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:03&lt;00:00, 152.81it/s]
+<pre>100%|██████████| 600/600 [00:06&lt;00:00, 98.81it/s] 
 </pre>
 </div>
 </div>
@@ -8452,16 +8463,16 @@ accuracy: 0.9737
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 10
-time: 4.154642343521118
-loss: 0.08559519001841108
-accuracy: 0.9744
+time: 6.2098119258880615
+train loss: 0.06093954871292091
+train accuracy: 0.9842666666666666
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:06&lt;00:00, 93.75it/s] 
+<pre>100%|██████████| 600/600 [00:03&lt;00:00, 156.18it/s]
 </pre>
 </div>
 </div>
@@ -8469,16 +8480,16 @@ accuracy: 0.9744
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 11
-time: 6.607432842254639
-loss: 0.08078692739959384
-accuracy: 0.9768
+time: 4.001900911331177
+train loss: 0.05635746167313183
+train accuracy: 0.9854333333333334
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:03&lt;00:00, 161.74it/s]
+<pre>100%|██████████| 600/600 [00:06&lt;00:00, 92.17it/s] 
 </pre>
 </div>
 </div>
@@ -8486,16 +8497,16 @@ accuracy: 0.9768
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 12
-time: 3.938486337661743
-loss: 0.0765680370047922
-accuracy: 0.9765
+time: 6.67869234085083
+train loss: 0.05191865528922976
+train accuracy: 0.9865666666666667
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:04&lt;00:00, 149.45it/s]
+<pre>100%|██████████| 600/600 [00:04&lt;00:00, 140.81it/s]
 </pre>
 </div>
 </div>
@@ -8503,16 +8514,16 @@ accuracy: 0.9765
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 13
-time: 4.1737096309661865
-loss: 0.07704406407847109
-accuracy: 0.9759
+time: 4.416812181472778
+train loss: 0.049081774091661416
+train accuracy: 0.9880166666666667
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:06&lt;00:00, 86.54it/s] 
+<pre>100%|██████████| 600/600 [00:06&lt;00:00, 94.76it/s] 
 </pre>
 </div>
 </div>
@@ -8520,16 +8531,16 @@ accuracy: 0.9759
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 14
-time: 7.117227792739868
-loss: 0.07192115619144557
-accuracy: 0.9778
+time: 6.477038145065308
+train loss: 0.045179767163502416
+train accuracy: 0.9884666666666667
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:03&lt;00:00, 155.07it/s]
+<pre>100%|██████████| 600/600 [00:04&lt;00:00, 149.44it/s]
 </pre>
 </div>
 </div>
@@ -8537,16 +8548,16 @@ accuracy: 0.9778
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 15
-time: 4.053383111953735
-loss: 0.07068194235166797
-accuracy: 0.9789
+time: 4.155821323394775
+train loss: 0.04079838613500174
+train accuracy: 0.9902166666666666
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:06&lt;00:00, 93.24it/s]
+<pre>100%|██████████| 600/600 [00:05&lt;00:00, 101.26it/s]
 </pre>
 </div>
 </div>
@@ -8554,16 +8565,16 @@ accuracy: 0.9789
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 16
-time: 6.6277570724487305
-loss: 0.07024281016924525
-accuracy: 0.9785
+time: 6.066481590270996
+train loss: 0.03932504860910411
+train accuracy: 0.9904833333333334
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:03&lt;00:00, 150.89it/s]
+<pre>100%|██████████| 600/600 [00:03&lt;00:00, 157.36it/s]
 </pre>
 </div>
 </div>
@@ -8571,16 +8582,16 @@ accuracy: 0.9785
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 17
-time: 4.12472939491272
-loss: 0.06994990901117021
-accuracy: 0.9791
+time: 3.9575226306915283
+train loss: 0.03612786764353247
+train accuracy: 0.99155
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:03&lt;00:00, 150.56it/s]
+<pre>100%|██████████| 600/600 [00:03&lt;00:00, 164.39it/s]
 </pre>
 </div>
 </div>
@@ -8588,16 +8599,16 @@ accuracy: 0.9791
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 18
-time: 4.1681318283081055
-loss: 0.06720355641090384
-accuracy: 0.9794
+time: 3.788079023361206
+train loss: 0.03500067905640145
+train accuracy: 0.9918333333333333
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:06&lt;00:00, 94.45it/s] 
+<pre>100%|██████████| 600/600 [00:05&lt;00:00, 110.22it/s]
 </pre>
 </div>
 </div>
@@ -8605,16 +8616,16 @@ accuracy: 0.9794
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 19
-time: 6.502121925354004
-loss: 0.06658928005986259
-accuracy: 0.9796
+time: 5.618566513061523
+train loss: 0.031060309797532527
+train accuracy: 0.99305
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 600/600 [00:04&lt;00:00, 144.98it/s]
+<pre>100%|██████████| 600/600 [00:03&lt;00:00, 164.72it/s]
 </pre>
 </div>
 </div>
@@ -8622,9 +8633,9 @@ accuracy: 0.9796
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>epoch: 20
-time: 4.28740668296814
-loss: 0.0668696160940067
-accuracy: 0.9802
+time: 3.7786271572113037
+train loss: 0.028842325996377854
+train accuracy: 0.9937166666666667
 </pre>
 </div>
 </div>
@@ -8637,7 +8648,52 @@ accuracy: 0.9802
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>В результате обучения удалось добиться точности 98% на тестовой выборке.</p>
+<p>Вычислим точность на тестовой выборке:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">y_test_p</span> <span class="o">=</span> <span class="n">trained_network</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">y_test_predict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_test_p</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">trained_network</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y_test_p</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test_predict</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'test loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'test accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>test loss: 0.06612036043700487
+test accuracy: 0.9785
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>В результате обучения удалось добиться точности 97,85% на тестовой выборке.</p>
 </div>
 </div>
 </div>
